@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/_5dip"
+                    android:layout_marginRight="@dimen/_5dip"
+                    android:layout_marginBottom="@dimen/_5dip"
+                    app:cardCornerRadius="@dimen/_8dip"
+                    app:cardElevation="@dimen/_5dip">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        tools:context=".Fragment.home.HomeFragment">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_5dip"
+                            android:background="@color/vlight_primar_color"
+                            android:fontFamily="@font/roboto_regular"
+                            android:gravity="center"
+                            android:paddingHorizontal="@dimen/_6dp"
+                            android:paddingVertical="@dimen/_10dp"
+                            android:text="Allocated Request"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sp"
+                            android:visibility="gone" />
+
+                        <ImageView
+                            android:id="@+id/imagea"
+                            android:layout_width="300dp"
+                            android:layout_height="130dp"
+                            android:layout_gravity="center"
+                            android:padding="@dimen/_10dp"
+                            android:src="@drawable/app_logo" />
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cardAddCust"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_4dip"
+                            android:elevation="@dimen/_6dp"
+                            android:orientation="horizontal"
+                            android:paddingVertical="@dimen/_8dip"
+                            android:visibility="gone"
+                            app:cardBackgroundColor="@color/vlight_primar_color"
+                            app:cardCornerRadius="@dimen/_6dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_5dip"
+                                android:orientation="vertical"
+                                android:padding="@dimen/_4dip">
+
+                                <TextView
+                                    android:id="@+id/tvTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginBottom="@dimen/_5dip"
+                                    android:fontFamily="@font/roboto_bold"
+                                    android:paddingVertical="@dimen/_6dp"
+                                    android:text="Add Customer/Visitor"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="@dimen/_16sp" />
+
+
+                                <ImageView
+                                    android:id="@+id/ivImage"
+                                    android:layout_width="@dimen/_40dip"
+                                    android:layout_height="@dimen/_40dip"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_gravity="center"
+                                    android:layout_marginStart="@dimen/_5dip"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginEnd="@dimen/_10dp"
+                                    android:layout_marginBottom="@dimen/_5dip"
+                                    android:rotation="180"
+                                    android:src="@drawable/quantum_ic_arrow_back_grey600_24"
+                                    android:tint="@color/colorPrimary" />
+
+
+                            </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rcDashboard"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                            app:spanCount="2"
+                            tools:itemCount="4"
+                            tools:listitem="@layout/item_dashboard" />
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cardTottalLead"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_4dip"
+                            android:elevation="@dimen/_2dip"
+                            android:orientation="horizontal"
+                            android:paddingVertical="@dimen/_8dip"
+                            android:visibility="gone"
+                            app:cardBackgroundColor="@color/white"
+                            app:cardCornerRadius="@dimen/_6dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_5dip"
+                                android:orientation="vertical"
+                                android:padding="@dimen/_4dip">
+
+                                <TextView
+                                    android:id="@+id/tvTitleTotatl"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginBottom="@dimen/_5dip"
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:paddingVertical="@dimen/_6dp"
+                                    android:text=""
+                                    android:textSize="@dimen/_18sp" />
+
+
+                                <TextView
+                                    android:id="@+id/tvTitleTotatlVal"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginEnd="@dimen/_10dp"
+                                    android:layout_marginBottom="@dimen/_5dip"
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:paddingVertical="@dimen/_6dp"
+                                    android:text=""
+                                    android:textSize="@dimen/_18sp" />
+
+
+                            </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rcTelecaer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layoutAnimation="@anim/layout_animation_fall_down"
+                            android:visibility="gone"
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                            app:spanCount="2"
+                            tools:itemCount="4"
+                            tools:listitem="@layout/item_dashboard" />
+
+                        <com.github.mikephil.charting.charts.BarChart
+                            android:id="@+id/idBarChart"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_300dp"
+                            android:layout_marginHorizontal="@dimen/_20dip"
+                            android:layout_marginVertical="@dimen/_20dip" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_5dip"
+                            android:background="@color/vlight_primar_color"
+                            android:fontFamily="@font/roboto_regular"
+                            android:gravity="center"
+                            android:paddingHorizontal="@dimen/_6dp"
+                            android:paddingVertical="@dimen/_10dp"
+                            android:text="Complaints Request"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sp"
+                            android:visibility="gone" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rcDashComplaint"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:visibility="gone"
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                            app:spanCount="2"
+                            tools:itemCount="4"
+                            tools:listitem="@layout/item_dashboard" />
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </androidx.core.widget.NestedScrollView>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fb_AddArchitect"
+                style="@style/style_FB_submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/_10dp"
+                android:src="@drawable/ic_baseline_person_add_alt_1_24"
+                android:visibility="gone"
+                app:tint="@android:color/white" />
+        </RelativeLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</layout>

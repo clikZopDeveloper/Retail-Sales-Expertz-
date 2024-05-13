@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="@dimen/_20dip"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/rlSectionTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="6dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Category"
+            android:textColor="@color/black"
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/_16sp"
+            android:padding="6dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/ivClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="end"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/cirle_shape"
+            android:backgroundTint="@color/white"
+            android:padding="2dp"
+            android:src="@drawable/quantum_ic_clear_grey600_24"
+            android:tint="@color/black"/>
+
+
+    </RelativeLayout>
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/rlSectionTop"
+        android:paddingHorizontal="@dimen/_10dp">
+
+        <RadioButton
+            android:id="@+id/rbInterested"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Interested" />
+
+        <RadioButton
+            android:id="@+id/rbPurchase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10dp"
+            android:text="Purchase" />
+
+
+    </RadioGroup>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/radioGroup">
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Select Category"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="10dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+
+            <AutoCompleteTextView
+                android:id="@+id/statCat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/tvPurchaseCat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingVertical="@dimen/_10dp"
+            android:text="All Category"
+            android:layout_marginTop="@dimen/_5dip"
+            android:paddingHorizontal="@dimen/_6dp"
+            android:textSize="@dimen/_14sp"
+            android:visibility="gone"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:gravity="center"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcPurchase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10dp"
+            android:layout_marginHorizontal="@dimen/_5dip"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            tools:itemCount="4"
+            app:spanCount="3"
+            tools:listitem="@layout/item_category" />
+
+        <TextView
+            android:id="@+id/tvIntersetedCat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingVertical="@dimen/_10dp"
+            android:text="Interested Category"
+            android:layout_marginTop="@dimen/_5dip"
+            android:paddingHorizontal="@dimen/_6dp"
+            android:textSize="@dimen/_14sp"
+            android:visibility="gone"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:gravity="center"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcInterseted"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            tools:itemCount="4"
+            android:visibility="gone"
+            app:spanCount="3"
+            android:layout_marginTop="5dp"
+            android:layout_marginHorizontal="@dimen/_5dip"
+            tools:listitem="@layout/item_category" />
+
+        <TextView
+            android:id="@+id/btnSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_5dip"
+            android:layout_marginTop="@dimen/_20dip"
+            android:background="@drawable/btn_round_shape"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center"
+            android:padding="15dp"
+            android:layout_marginBottom="@dimen/_10dp"
+            android:layout_below="@+id/inputNumber"
+            android:layout_centerHorizontal="true"
+            android:text="Submit"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+</RelativeLayout>
