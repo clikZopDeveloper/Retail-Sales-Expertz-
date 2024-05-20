@@ -46,6 +46,7 @@ class CategoryAdapter(var context: Activity, var list: List<SubCatBean.Data>, va
             }
 
             Log.d("zxczxc", Gson().toJson(data))
+            Log.d("zxczxc", Gson().toJson(purchaseCatNameList))
             rvClickListner.clickPos(data, list[position].id)
         }
        // holder.ivImage.setImageDrawable(context.resources.getDrawable(list[position].drawableId))

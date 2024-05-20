@@ -67,7 +67,7 @@ class LoginActivity : AppCompatActivity(), ApiResponseListner {
 
     private fun doLogin() {
         if (TextUtils.isEmpty(binding.editMobNo.text.toString())) {
-            Utility.showSnackBar(this, "Please enter username")
+            Utility.showSnackBar(this, "Please enter phone number")
         } /*else if (binding.editMobNo.text.toString().length < 10) {
             Utility.showSnackBar(this, "Please enter valid mobile number")
         }*/ else if (TextUtils.isEmpty(binding.editPassword.text.toString())) {

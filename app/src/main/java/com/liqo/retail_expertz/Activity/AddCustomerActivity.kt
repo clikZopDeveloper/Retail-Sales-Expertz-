@@ -46,6 +46,8 @@ class AddCustomerActivity : AppCompatActivity(), ApiResponseListner,
     ConnectivityListener.ConnectivityReceiverListener {
     private var mAdapterPurchaseCat: CategoryAdapter?=null
     private var catName= ""
+    val purchaseCatNameDataList = mutableListOf<String>()
+    val purchaseCatNameInterList = mutableListOf<String>()
     private var mAdapterInterCat: CategoryAdapter?=null
     private lateinit var binding: ActivityAddCustomerBinding
     private var catPurchaseListID: MutableList<Any?>? = null
@@ -109,16 +111,30 @@ class AddCustomerActivity : AppCompatActivity(), ApiResponseListner,
         typeMode()
         binding.btnAddCustProduct.setOnClickListener {
 
-            if (mAdapterPurchaseCat?.purchaseCatNameList!=null&&mAdapterInterCat?.purchaseCatNameList!=null){
-               binding.tvPurchase.visibility=View.VISIBLE
-               binding.tvInetset.visibility=View.VISIBLE
-                handleCustomProdList(mAdapterPurchaseCat?.purchaseCatNameList)
-                handleInstertCatList(mAdapterInterCat?.purchaseCatNameList)
-                Log.d("erwer",catName+"\n"+Gson().toJson(mAdapterInterCat?.purchaseCatNameList)+"\n"+mAdapterPurchaseCat?.purchaseCatNameList)
+            binding.tvPurchase.visibility=View.VISIBLE
+            binding.tvInetset.visibility=View.VISIBLE
+
+            purchaseCatNameDataList.addAll(mAdapterPurchaseCat?.purchaseCatNameList!!)
+            purchaseCatNameInterList.addAll(mAdapterInterCat?.purchaseCatNameList!!)
+
+            handleCustomProdList(purchaseCatNameDataList)
+            handleInstertCatList(purchaseCatNameInterList)
+
+           mAdapterPurchaseCat?.purchaseCatNameList!!.clear()
+           mAdapterInterCat?.purchaseCatNameList!!.clear()
+         /*   purchaseCatNameDataList!!.clear()
+            purchaseCatNameInterList!!.clear()*/
+
+            /*  handleCustomProdList(mAdapterPurchaseCat?.purchaseCatNameList)
+              handleInstertCatList(mAdapterInterCat?.purchaseCatNameList)*/
+
+            Log.d("erwer",catName+"\n"+Gson().toJson(mAdapterInterCat?.purchaseCatNameList)+"\n"+mAdapterPurchaseCat?.purchaseCatNameList)
+
+         /*   if (mAdapterPurchaseCat?.purchaseCatNameList!=null&&mAdapterInterCat?.purchaseCatNameList!=null){
 
             }else{
                 Toast.makeText(this@AddCustomerActivity,"Please Select Category ",Toast.LENGTH_SHORT).show()
-            }
+            }*/
 
         }
         if (PrefManager.getString(ApiContants.Role,"").equals("telecaller")){
@@ -211,16 +227,19 @@ class AddCustomerActivity : AppCompatActivity(), ApiResponseListner,
                 if (checkedId == R.id.rbCust) {
                     projectType = "Customer"
                     binding.tvPurchaseCat.visibility = View.VISIBLE
+                    binding.tvPurchase.visibility = View.VISIBLE
                     binding.rcPurchase.visibility = View.VISIBLE
+                    binding.rcAllPurchaseCat.visibility = View.VISIBLE
                 } else if (checkedId == R.id.rbVisitor) {
                     projectType = "Visitor"
                     binding.tvPurchaseCat.visibility = View.GONE
+                    binding.tvPurchase.visibility = View.GONE
                     binding.rcPurchase.visibility = View.GONE
+                    binding.rcAllPurchaseCat.visibility = View.GONE
 
                 }
             }
         })
-
     }
 
     fun apiCity(stateName: String) {
@@ -274,6 +293,7 @@ class AddCustomerActivity : AppCompatActivity(), ApiResponseListner,
         binding.rcAllPurchaseCat.layoutManager = LinearLayoutManager(this)
         var mAdapter = CustomProdListAdapter(this, purchaseCatNameList,catName)
         binding.rcAllPurchaseCat.adapter = mAdapter
+        mAdapter.notifyDataSetChanged()
         // rvMyAcFiled.isNestedScrollingEnabled = false
     }
     fun handleInstertCatList(
@@ -282,6 +302,7 @@ class AddCustomerActivity : AppCompatActivity(), ApiResponseListner,
         binding.rcAllInstertCat.layoutManager = LinearLayoutManager(this)
         var mAdapter = CustomProdListAdapter(this, data,catName)
         binding.rcAllInstertCat.adapter = mAdapter
+        mAdapter.notifyDataSetChanged()
         // rvMyAcFiled.isNestedScrollingEnabled = false
     }
 

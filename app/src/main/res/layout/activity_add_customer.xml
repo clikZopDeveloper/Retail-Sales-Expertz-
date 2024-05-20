@@ -33,8 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_10dp"
-                    android:layout_marginTop="@dimen/_10dp"
-                    android:hint="Enter Your Mobile Number">
+                    android:layout_marginTop="@dimen/_10dp">
 
                     <AutoCompleteTextView
                         android:id="@+id/editMobileNo"
@@ -43,10 +42,12 @@
                         android:paddingVertical="15dp"
                         android:maxLength="10"
                         android:inputType="number"
+                        android:hint="@string/enter_mob_no"
                         android:paddingHorizontal="@dimen/_4dip"
                         android:textColor="@color/black" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -54,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_10dp"
                     android:layout_marginTop="@dimen/_10dp"
-                    android:hint="Enter Your Name">
+                    android:hint="Enter Name">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editName"
@@ -69,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_10dp"
                     android:layout_marginTop="@dimen/_10dp"
-                    android:hint="Enter Your Whatsapp Number ">
+                    android:hint="Enter Whatsapp Number ">
 
                     <!--this is the actual edit text which takes the input-->
                     <com.google.android.material.textfield.TextInputEditText
@@ -88,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_10dp"
                     android:layout_marginTop="@dimen/_10dp"
-                    android:hint="Enter Your EmailId">
+                    android:hint="Enter Email Id">
 
                     <!--this is the actual edit text which takes the input-->
                     <com.google.android.material.textfield.TextInputEditText
@@ -134,7 +135,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_10dp"
                     android:layout_marginTop="@dimen/_10dp"
-                    android:hint="Enter Your Address">
+                    android:hint="Enter Address">
 
                     <!--this is the actual edit text which takes the input-->
                     <com.google.android.material.textfield.TextInputEditText
@@ -201,7 +202,7 @@
                     android:layout_marginTop="@dimen/_5dip"
                     android:fontFamily="@font/roboto_bold"
                     android:padding="@dimen/_6dp"
-                    android:text="select Customer Type"
+                    android:text="Select Customer Type"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_16sp" />
                 <RadioGroup
@@ -236,7 +237,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_10dp"
                     android:layout_marginTop="@dimen/_10dp"
-                    android:hint="Enter Your Remark">
+                    android:hint="Enter Remark">
 
                     <!--this is the actual edit text which takes the input-->
                     <com.google.android.material.textfield.TextInputEditText
