@@ -13,11 +13,11 @@ import com.liqo.retail_expertz.Model.AddProductBean
 import com.liqo.retail_expertz.R
 
 
-class CustomProdListAdapter(
+class CustomProdInterListAdapter(
     var context: Activity,
     var list: MutableList<AddProductBean>?,
     val catName:String,
-) : RecyclerView.Adapter<CustomProdListAdapter.MyViewHolder>() {
+) : RecyclerView.Adapter<CustomProdInterListAdapter.MyViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -38,8 +38,7 @@ class CustomProdListAdapter(
              holder.tvAdd.visibility = View.VISIBLE*/
 
    //     holder.tvCategoryName.text = catName
-       holder.tvPurchaseCatName.text = list!![position].catName
-
+        holder.tvPurchaseCatName.text = list!![position].catName
         val item = list!![position].ID
         holder.bind(item)
     }
@@ -59,13 +58,12 @@ class CustomProdListAdapter(
         val tvPurchaseCatName: TextView = itemview.findViewById(R.id.tvPurchaseCatName)
         val ivDelete: ImageView = itemview.findViewById(R.id.ivDelete)
         fun bind(item: Int) {
-
             ivDelete.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     removeItem(position)
                 }else{
-                    (context as AddCustomerActivity).removeItemByNamePurchase(item)
+                    (context as AddCustomerActivity).removeItemByNameInter(item)
                 }
             }
         }

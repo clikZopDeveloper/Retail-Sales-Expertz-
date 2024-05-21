@@ -48,12 +48,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
+                    android:visibility="gone"
                     android:layout_alignParentEnd="true"
                     android:layout_gravity="center"
                     android:fontFamily="@font/roboto_bold"
                     android:textSize="@dimen/_14sp"
                     android:layout_marginStart="@dimen/_10dp"
                     android:textColor="@color/colorPrimary" />
+                <ImageView
+                    android:id="@+id/ivDelete"
+                    android:layout_width="@dimen/_24dip"
+                    android:layout_height="@dimen/_24dip"
+                    android:src="@drawable/ic_baseline_delete_24"
+                    android:tint="@color/paymentsdk_color_red"
+                    android:layout_alignParentEnd="true"/>
             </RelativeLayout>
 
         </LinearLayout>

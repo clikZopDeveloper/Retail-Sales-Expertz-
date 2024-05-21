@@ -13,11 +13,12 @@ import com.liqo.retail_expertz.Model.SubCatBean
 import com.liqo.retail_expertz.Utills.RvListClickListner
 
 import com.google.gson.Gson
+import com.liqo.retail_expertz.Model.AddProductBean
 
 
 class CategoryAdapter(var context: Activity, var list: List<SubCatBean.Data>, var rvClickListner: RvListClickListner) : RecyclerView.Adapter<CategoryAdapter.MyViewHolder>(){
     private val data = mutableListOf<Int>()
-     val purchaseCatNameList = mutableListOf<String>()
+     val purchaseCatNameList = mutableListOf<AddProductBean>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder { // infalte the item Layout
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_category, parent, false)
         return MyViewHolder(v)
@@ -33,16 +34,26 @@ class CategoryAdapter(var context: Activity, var list: List<SubCatBean.Data>, va
         holder.tvOff.background = RoundView(context.resources.getColor(R.color.orange), RoundView.getRadius(20f))
         holder.tvAdd.visibility = View.VISIBLE*/
 
-
         holder.tvName.text= list[position].name
         holder.tvDate.text= list[position].careatedAt.toString()
         holder.ivCheck.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 data.add(list[position].id)
-                purchaseCatNameList.add(list[position].name)
+
+                val multipleList = AddProductBean(
+                    list[position].id,
+                    list[position].name
+                )
+                purchaseCatNameList.add(multipleList)
             } else {
                 data.remove(list[position].id)
-                purchaseCatNameList.remove(list[position].name)
+
+                val multipleList = AddProductBean(
+                    list[position].id,
+                    list[position].name
+                )
+                purchaseCatNameList.remove(multipleList)
+
             }
 
             Log.d("zxczxc", Gson().toJson(data))

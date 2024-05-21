@@ -28,23 +28,22 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_10dp"
-                    android:layout_marginTop="@dimen/_10dp">
+                    android:layout_marginTop="@dimen/_10dp"
+                    android:hint="Enter Mobile Number">
 
                     <AutoCompleteTextView
                         android:id="@+id/editMobileNo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingVertical="15dp"
-                        android:maxLength="10"
-                        android:inputType="number"
-                        android:hint="@string/enter_mob_no"
                         android:paddingHorizontal="@dimen/_4dip"
-                        android:textColor="@color/black" />
+                        android:paddingVertical="15dp"
+                        android:textAppearance="@style/CustomHintStyle" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,7 +63,7 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -77,9 +76,9 @@
                         android:id="@+id/editWatsMobileNo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:inputType="number"
                         android:maxLength="10"
-                        android:singleLine="true"
-                        android:inputType="number"/>
+                        android:singleLine="true" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -98,31 +97,33 @@
                         android:layout_height="wrap_content" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <EditText
                     android:id="@+id/editDOB"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10dp"
+                    android:layout_marginVertical="@dimen/_10dp"
+                    android:layout_marginTop="@dimen/_5dip"
                     android:layout_weight="1"
                     android:clickable="false"
                     android:cursorVisible="false"
-                    android:layout_marginTop="@dimen/_5dip"
-                    android:layout_marginHorizontal="@dimen/_10dp"
-                    android:layout_marginVertical="@dimen/_10dp"
                     android:drawableRight="@drawable/ic_baseline_calendar_month_24"
                     android:drawablePadding="10dp"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:hint="Select DOB" />
+
                 <EditText
                     android:id="@+id/editDOA"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10dp"
+                    android:layout_marginVertical="@dimen/_10dp"
+                    android:layout_marginTop="@dimen/_5dip"
                     android:layout_weight="1"
                     android:clickable="false"
                     android:cursorVisible="false"
-                    android:layout_marginTop="@dimen/_5dip"
-                    android:layout_marginHorizontal="@dimen/_10dp"
-                    android:layout_marginVertical="@dimen/_10dp"
                     android:drawableRight="@drawable/ic_baseline_calendar_month_24"
                     android:drawablePadding="10dp"
                     android:focusable="false"
@@ -146,36 +147,34 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Select State"
-                    android:layout_marginTop="10dp"
                     android:layout_marginHorizontal="10dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                    android:layout_marginTop="10dp"
+                    android:hint="Select State">
 
 
                     <AutoCompleteTextView
                         android:id="@+id/stateselector"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
+                        android:layout_height="wrap_content" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Select City"
-                    android:layout_marginTop="10dp"
                     android:layout_marginHorizontal="10dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                    android:layout_marginTop="10dp"
+                    android:hint="Select City">
 
 
                     <AutoCompleteTextView
                         android:id="@+id/cityselector"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
+                        android:layout_height="wrap_content" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -205,6 +204,7 @@
                     android:text="Select Customer Type"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_16sp" />
+
                 <RadioGroup
                     android:id="@+id/radioGroup"
                     android:layout_width="match_parent"
@@ -246,89 +246,92 @@
                         android:layout_height="wrap_content" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/layoutCategory"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Select Category"
-                    android:layout_marginTop="10dp"
                     android:layout_marginHorizontal="10dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                    android:layout_marginTop="10dp"
+                    android:hint="Select Category">
 
 
                     <AutoCompleteTextView
                         android:id="@+id/statCat"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
+                        android:layout_height="wrap_content" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <TextView
                     android:id="@+id/tvPurchaseCat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_5dip"
                     android:background="@color/white"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/_6dp"
                     android:paddingVertical="@dimen/_10dp"
                     android:text="Purchase Category"
-                    android:layout_marginTop="@dimen/_5dip"
-                    android:paddingHorizontal="@dimen/_6dp"
-                    android:textSize="@dimen/_14sp"
-                    android:fontFamily="@font/roboto_bold"
-                    android:layout_gravity="center"
                     android:textColor="@color/black"
-                    android:gravity="center"/>
+                    android:textSize="@dimen/_14sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcPurchase"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:layout_marginHorizontal="@dimen/_5dip"
+                    android:layout_marginTop="5dp"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    tools:itemCount="4"
                     app:spanCount="3"
+                    tools:itemCount="4"
                     tools:listitem="@layout/item_category" />
 
                 <TextView
                     android:id="@+id/tvIntersetedCat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_5dip"
                     android:background="@color/white"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/_6dp"
                     android:paddingVertical="@dimen/_10dp"
                     android:text="Interested Category"
-                    android:layout_marginTop="@dimen/_5dip"
-                    android:paddingHorizontal="@dimen/_6dp"
-                    android:textSize="@dimen/_14sp"
-                    android:fontFamily="@font/roboto_bold"
-                    android:layout_gravity="center"
                     android:textColor="@color/black"
-                    android:gravity="center"/>
+                    android:textSize="@dimen/_14sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcInterseted"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    tools:itemCount="4"
-                    app:spanCount="3"
-                    android:layout_marginTop="5dp"
                     android:layout_marginHorizontal="@dimen/_5dip"
+                    android:layout_marginTop="5dp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="3"
+                    tools:itemCount="4"
                     tools:listitem="@layout/item_category" />
+
                 <TextView
                     android:id="@+id/tvPurchase"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_5dip"
                     android:background="@color/white"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/_6dp"
                     android:paddingVertical="@dimen/_10dp"
                     android:text="Purchase Category"
-                    android:layout_marginTop="@dimen/_5dip"
-                    android:paddingHorizontal="@dimen/_6dp"
-                    android:textSize="@dimen/_14sp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_bold"
-                    android:layout_gravity="center"
                     android:textColor="@color/black"
-                    android:gravity="center"/>
+                    android:textSize="@dimen/_14sp"
+                    android:visibility="gone" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcAllPurchaseCat"
                     android:layout_width="match_parent"
@@ -337,21 +340,23 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:itemCount="4"
                     tools:listitem="@layout/item_dataproduct_list" />
+
                 <TextView
                     android:id="@+id/tvInetset"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_5dip"
                     android:background="@color/white"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/_6dp"
                     android:paddingVertical="@dimen/_10dp"
                     android:text="Interested Category"
-                    android:layout_marginTop="@dimen/_5dip"
-                    android:paddingHorizontal="@dimen/_6dp"
-                    android:textSize="@dimen/_14sp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/roboto_bold"
-                    android:layout_gravity="center"
                     android:textColor="@color/black"
-                    android:gravity="center"/>
+                    android:textSize="@dimen/_14sp"
+                    android:visibility="gone" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcAllInstertCat"
                     android:layout_width="match_parent"
@@ -361,9 +366,6 @@
                     tools:itemCount="4"
                     tools:listitem="@layout/item_dataproduct_list" />
 
-
-
-
                 <RelativeLayout
                     android:id="@+id/btnUplaodImages"
                     android:layout_width="match_parent"
@@ -371,9 +373,9 @@
                     android:layout_marginHorizontal="@dimen/_6dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/border"
-                    android:visibility="gone"
                     android:orientation="vertical"
-                    android:padding="10dp">
+                    android:padding="10dp"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/tvtitle"
@@ -410,60 +412,63 @@
                         android:layout_marginEnd="20dp"
                         android:gravity="center"
                         android:src="@drawable/add_file" />
+
                     <TextView
                         android:id="@+id/tvImageCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:visibility="gone"
-                        android:layout_centerHorizontal="true"
                         android:layout_below="@+id/btnAadharFront"
+                        android:layout_centerHorizontal="true"
+                        android:padding="5dp"
                         android:text=""
                         android:textColor="@color/black"
                         android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:visibility="gone" />
                 </RelativeLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="20dp"
-    android:layout_marginBottom="@dimen/_10dp"
-    android:layout_gravity="center"
-    android:gravity="center"
-    android:layout_marginHorizontal="@dimen/_10dp"
-    android:orientation="horizontal"
-    android:weightSum="2">
 
-    <TextView
-        android:id="@+id/btnAddCustProduct"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@drawable/btn_round_shape"
-        android:fontFamily="@font/roboto_bold"
-        android:gravity="center"
-        android:padding="15dp"
-        android:layout_weight="1"
-        android:text="Save Product"
-        android:textColor="@color/white"
-        android:textSize="16sp" />
-    <TextView
-        android:id="@+id/btnSubmit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:layout_marginStart="@dimen/_10dp"
-        android:background="@drawable/btn_round_shape"
-        android:fontFamily="@font/roboto_bold"
-        android:gravity="center"
-        android:padding="15dp"
-        android:text="Submit"
-        android:textColor="@color/white"
-        android:textSize="16sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/_10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="@dimen/_10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/btnAddCustProduct"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_round_shape"
+                        android:fontFamily="@font/roboto_bold"
+                        android:gravity="center"
+                        android:padding="15dp"
+                        android:text="Save Product"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/btnSubmit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_round_shape"
+                        android:fontFamily="@font/roboto_bold"
+                        android:gravity="center"
+                        android:padding="15dp"
+                        android:text="Submit"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
 
 
-</LinearLayout>
+                </LinearLayout>
 
             </LinearLayout>
         </ScrollView>

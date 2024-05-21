@@ -20,9 +20,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.liqo.kktext.Model.CityBean
-import com.liqo.retail_expertz.Adapter.CategoryAdapter
-import com.liqo.retail_expertz.Adapter.CustomerInterstedAdapter
-import com.liqo.retail_expertz.Adapter.CustomerPurchaseAdapter
 
 import com.liqo.retail_expertz.ApiHelper.ApiController
 import com.liqo.retail_expertz.ApiHelper.ApiResponseListner
@@ -35,7 +32,7 @@ import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.gson.Gson
 import com.google.gson.JsonElement
-import com.liqo.retail_expertz.Adapter.CustomProdListAdapter
+import com.liqo.retail_expertz.Adapter.*
 import com.stpl.antimatter.Utils.ApiContants
 import java.io.File
 import java.util.*
@@ -45,26 +42,25 @@ class AddCustomerActivity : AppCompatActivity(), ApiResponseListner,
     GoogleApiClient.OnConnectionFailedListener,
     ConnectivityListener.ConnectivityReceiverListener {
     private var mAdapterPurchaseCat: CategoryAdapter?=null
+    private var mAdapterPurchase: CustomProdListAdapter?=null
+    private var mAdapterInter: CustomProdInterListAdapter?=null
     private var catName= ""
-    val purchaseCatNameDataList = mutableListOf<String>()
-    val purchaseCatNameInterList = mutableListOf<String>()
+    val purchaseNameList = mutableListOf<AddProductBean>()
+    val interNameList = mutableListOf<AddProductBean>()
     private var mAdapterInterCat: CategoryAdapter?=null
     private lateinit var binding: ActivityAddCustomerBinding
     private var catPurchaseListID: MutableList<Any?>? = null
     private var catIntrsetedListID: MutableList<Any?>? = null
-    private var catList: kotlin.collections.List<CategoryBean.Data>? = null
     val imgList: MutableList<File> = ArrayList()
     private lateinit var apiClient: ApiController
     private var calendar: Calendar? = null
     var myReceiver: ConnectivityListener? = null
     var way = ""
-    val cutomProdList: MutableList<AddProductBean> = ArrayList()
     var projectType = "Customer"
     var activity: Activity = this
     val PERMISSION_CODE = 12345
     val CAMERA_PERMISSION_CODE1 = 123
     var SELECT_PICTURES1 = 1
-    var statusID = 0
     var custID = ""
     var file2: File? = null
 
@@ -85,7 +81,6 @@ class AddCustomerActivity : AppCompatActivity(), ApiResponseListner,
 
         way = intent.getStringExtra("way")!!
         //      requestPermission()
-
 
         calendar = Calendar.getInstance();
         val hour: Int = calendar!!.get(Calendar.HOUR_OF_DAY)
@@ -109,40 +104,31 @@ class AddCustomerActivity : AppCompatActivity(), ApiResponseListner,
         setState()
         setSourceData()
         typeMode()
+
         binding.btnAddCustProduct.setOnClickListener {
 
             binding.tvPurchase.visibility=View.VISIBLE
             binding.tvInetset.visibility=View.VISIBLE
 
-            purchaseCatNameDataList.addAll(mAdapterPurchaseCat?.purchaseCatNameList!!)
-            purchaseCatNameInterList.addAll(mAdapterInterCat?.purchaseCatNameList!!)
+            purchaseNameList.addAll(mAdapterPurchaseCat?.purchaseCatNameList!!)
+            interNameList.addAll(mAdapterInterCat?.purchaseCatNameList!!)
 
-            handleCustomProdList(purchaseCatNameDataList)
-            handleInstertCatList(purchaseCatNameInterList)
+            handleCustomProdList(purchaseNameList)
+            handleInstertCatList(interNameList)
 
            mAdapterPurchaseCat?.purchaseCatNameList!!.clear()
            mAdapterInterCat?.purchaseCatNameList!!.clear()
-         /*   purchaseCatNameDataList!!.clear()
-            purchaseCatNameInterList!!.clear()*/
 
-            /*  handleCustomProdList(mAdapterPurchaseCat?.purchaseCatNameList)
-              handleInstertCatList(mAdapterInterCat?.purchaseCatNameList)*/
-
-            Log.d("erwer",catName+"\n"+Gson().toJson(mAdapterInterCat?.purchaseCatNameList)+"\n"+mAdapterPurchaseCat?.purchaseCatNameList)
-
-         /*   if (mAdapterPurchaseCat?.purchaseCatNameList!=null&&mAdapterInterCat?.purchaseCatNameList!=null){
-
-            }else{
-                Toast.makeText(this@AddCustomerActivity,"Please Select Category ",Toast.LENGTH_SHORT).show()
-            }*/
+           // Log.d("erwer",catName+"\n"+Gson().toJson(mAdapterInterCat?.purchaseCatNameList)+"\n"+mAdapterPurchaseCat?.purchaseCatNameList)
+            Log.d("erwer",catName+"\n"+Gson().toJson(purchaseNameList)+"\n"+Gson().toJson(interNameList))
 
         }
+
         if (PrefManager.getString(ApiContants.Role,"").equals("telecaller")){
 
         }else{
             setSearchNum()
         }
-
 
         binding.apply {
 
@@ -202,6 +188,40 @@ class AddCustomerActivity : AppCompatActivity(), ApiResponseListner,
         }
     }
 
+    fun handleCustomProdList(purchaseCatNameList: MutableList<AddProductBean>?) {
+        binding.rcAllPurchaseCat.layoutManager = LinearLayoutManager(this)
+         mAdapterPurchase = CustomProdListAdapter(this, purchaseCatNameList,catName)
+        binding.rcAllPurchaseCat.adapter = mAdapterPurchase
+        mAdapterPurchase!!.notifyDataSetChanged()
+        // rvMyAcFiled.isNestedScrollingEnabled = false
+    }
+
+    fun handleInstertCatList(
+        data: MutableList<AddProductBean>?,
+    ) {
+        binding.rcAllInstertCat.layoutManager = LinearLayoutManager(this)
+        mAdapterInter = CustomProdInterListAdapter(this, data,catName)
+        binding.rcAllInstertCat.adapter = mAdapterInter
+        mAdapterInter!!.notifyDataSetChanged()
+        // rvMyAcFiled.isNestedScrollingEnabled = false
+    }
+
+     fun removeItemByNamePurchase(id: Int) {
+        val position = purchaseNameList.indexOfFirst { it.ID == id }
+        if (position != -1) {
+            mAdapterPurchase!!.removeItem(position)
+            mAdapterPurchase!!.notifyDataSetChanged()
+        }
+    }
+
+    fun removeItemByNameInter(id: Int) {
+        val position = interNameList.indexOfFirst { it.ID == id }
+        if (position != -1) {
+            mAdapterInter!!.removeItem(position)
+            mAdapterInter!!.notifyDataSetChanged()
+        }
+    }
+
     fun apiCategory() {
         SalesApp.isAddAccessToken = true
         apiClient = ApiController(activity, this)
@@ -250,6 +270,7 @@ class AddCustomerActivity : AppCompatActivity(), ApiResponseListner,
         apiClient.progressView.showLoader()
         apiClient.getApiPostCall(ApiContants.getCity, params)
     }
+
     fun apiSubCategory(catID: String) {
         SalesApp.isAddAccessToken = true
         apiClient = ApiController(activity, this)
@@ -286,24 +307,6 @@ class AddCustomerActivity : AppCompatActivity(), ApiResponseListner,
             setSourceData()
 
         })
-    }
-
-
-    fun handleCustomProdList(purchaseCatNameList: MutableList<String>?) {
-        binding.rcAllPurchaseCat.layoutManager = LinearLayoutManager(this)
-        var mAdapter = CustomProdListAdapter(this, purchaseCatNameList,catName)
-        binding.rcAllPurchaseCat.adapter = mAdapter
-        mAdapter.notifyDataSetChanged()
-        // rvMyAcFiled.isNestedScrollingEnabled = false
-    }
-    fun handleInstertCatList(
-        data: MutableList<String>?,
-    ) {
-        binding.rcAllInstertCat.layoutManager = LinearLayoutManager(this)
-        var mAdapter = CustomProdListAdapter(this, data,catName)
-        binding.rcAllInstertCat.adapter = mAdapter
-        mAdapter.notifyDataSetChanged()
-        // rvMyAcFiled.isNestedScrollingEnabled = false
     }
 
     override fun success(tag: String?, jsonElement: JsonElement) {
@@ -721,7 +724,6 @@ class AddCustomerActivity : AppCompatActivity(), ApiResponseListner,
         }
     }
 
-
     fun apiAddCustomer() {
         SalesApp.isAddAccessToken = true
         apiClient = ApiController(activity, this)
@@ -741,9 +743,11 @@ class AddCustomerActivity : AppCompatActivity(), ApiResponseListner,
         params["customer_type"] = projectType
         params["source"] = binding.stateSource.text.toString()
         params["remarks"] = binding.editRemark.text.toString()
-        params["interested_category"] = catIntrsetedListID.toString()
-        params["purchased_category"] = catPurchaseListID.toString()
+     /*   params["interested_category"] = catIntrsetedListID.toString()
+        params["purchased_category"] = catPurchaseListID.toString()*/
 
+        params["interested_category"] =Gson().toJson(interNameList)
+        params["purchased_category"] =  Gson().toJson(purchaseNameList)
 
         /*for (i in 0 until imgList.size) {
          builder.addFormDataPart("files[]", imgList.get(i).name,
@@ -757,7 +761,8 @@ class AddCustomerActivity : AppCompatActivity(), ApiResponseListner,
         //    apiClient.makeCallMultipart(ApiContants.AddCustomer, builder.build())
         if (way.equals("AddCustomer")) {
             apiClient.getApiPostCall(ApiContants.AddCustomer, params)
-        }else {
+        }
+        else {
             params["customer_id"] = custID
             params["status_id"] = ""
             apiClient.getApiPostCall(ApiContants.getUpdateCustomer, params)
