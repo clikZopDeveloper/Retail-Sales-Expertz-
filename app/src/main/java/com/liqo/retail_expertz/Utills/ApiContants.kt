@@ -54,6 +54,7 @@ public class ApiContants {
         const val getState = "get-state"
         const val getSource = "get-source"
         const val GetStatus = "get-status"
+        const val GetAttendance = "get-attendance"
         const val getCategory = "get-category"
         const val getSubCategory = "get-sub-category"
         const val getPasswordChange = "password-change"

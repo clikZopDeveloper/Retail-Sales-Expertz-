@@ -58,8 +58,6 @@ ConnectivityListener.ConnectivityReceiverListener {
     private val permissionId = 2
     var list: List<Address>? = null
     var isActive = true
-    var dayStatus = 5
-
     private lateinit var mFusedLocationClient: FusedLocationProviderClient
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,9 +78,10 @@ ConnectivityListener.ConnectivityReceiverListener {
         binding.appBarMain.appbarLayout.ivMenu.setOnClickListener {
             drawerLayout.open()
         }
-
+        apiClient = ApiController(this, this)
         handleRcMaster()
         getLocation()
+        apiGetAttendance()
      //   getLocation()
         if (PrefManager.getString(ApiContants.Role,"").equals("telecaller")){
         apiGetStatus()
@@ -99,32 +98,17 @@ ConnectivityListener.ConnectivityReceiverListener {
 
         Log.d("token>>>>>", PrefManager.getString(ApiContants.AccessToken, ""))
 
-        if (PrefManager.getString(ApiContants.dayStatus, "").equals("start") || dayStatus == 1) {
-            binding.appBarMain.appbarLayout.switchDayStart.isChecked = true
-            //    Toast.makeText(this@DashboardActivity, "rr", Toast.LENGTH_SHORT).show()
-            binding.appBarMain.appbarLayout.switchDayStart.text = "Day Start"
-        }
-        else {
-            //     Toast.makeText(this@DashboardActivity, "werwe", Toast.LENGTH_SHORT).show()
-            binding.appBarMain.appbarLayout.switchDayStart.isChecked = false
-            binding.appBarMain.appbarLayout.switchDayStart.text = "Day End"
-        }
-
         binding.appBarMain.appbarLayout.switchDayStart.setOnCheckedChangeListener({ _, isChecked ->
             if (isChecked) {
                 binding.appBarMain.appbarLayout.switchDayStart.text = "Day Start"
                 getLocation()
                 apiCallDayStatus(ApiContants.startDay)
-                PrefManager.putString(ApiContants.dayStatus, "start")
             } else {
                 binding.appBarMain.appbarLayout.switchDayStart.text = "Day End"
                 getLocation()
-
                 apiCallDayStatus(ApiContants.endDay)
-                PrefManager.putString(ApiContants.dayStatus, "end")
             }
-            /*  Toast.makeText(this@DashboardActivity, message.toString(),
-                  Toast.LENGTH_SHORT).show()*/
+
         })
 
 
@@ -159,19 +143,25 @@ ConnectivityListener.ConnectivityReceiverListener {
 
     fun apiCallDayStatus(dayStatus: String) {
         SalesApp.isAddAccessToken = true
-        apiClient = ApiController(this, this)
         val params = Utility.getParmMap()
         params["last_location"] = "${list?.get(0)?.latitude},${list?.get(0)?.longitude}"
         apiClient.progressView.showLoader()
         apiClient.getApiPostCall(dayStatus, params)
-
     }
+
     fun apiGetStatus() {
         SalesApp.isAddAccessToken = true
-        apiClient = ApiController(this, this)
         val params = Utility.getParmMap()
         apiClient.progressView.showLoader()
         apiClient.getApiPostCall(ApiContants.GetStatus, params)
+
+    }
+
+    fun apiGetAttendance() {
+        SalesApp.isAddAccessToken = true
+        val params = Utility.getParmMap()
+        apiClient.progressView.showLoader()
+        apiClient.getApiPostCall(ApiContants.GetAttendance, params)
 
     }
 
@@ -198,6 +188,7 @@ ConnectivityListener.ConnectivityReceiverListener {
                 GeneralUtilities.launchActivity(this, LoginActivity::class.java)
                 finishAffinity()
             }
+
             if (tag == ApiContants.startDay) {
                 val dayStatusBean = apiClient.getConvertIntoModel<StartDayBean>(
                     jsonElement.toString(),
@@ -205,6 +196,23 @@ ConnectivityListener.ConnectivityReceiverListener {
                 )
                 if (dayStatusBean.error == false) {
                     Utility.showSnackBar(this, dayStatusBean.msg)
+                }
+            }
+
+            if (tag == ApiContants.GetAttendance) {
+                val getAttendanceBean = apiClient.getConvertIntoModel<GetAttendanceBean>(
+                    jsonElement.toString(),
+                    GetAttendanceBean::class.java
+                )
+
+                if (getAttendanceBean.error == false) {
+                    if (getAttendanceBean.data.dayStatus==true){
+                        binding.appBarMain.appbarLayout.switchDayStart.text = "Day Start"
+                        binding.appBarMain.appbarLayout.switchDayStart.isChecked = true
+                    }else{
+                        binding.appBarMain.appbarLayout.switchDayStart.text = "Day End"
+                        binding.appBarMain.appbarLayout.switchDayStart.isChecked = false
+                    }
                 }
             }
 
